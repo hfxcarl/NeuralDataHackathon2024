@@ -53,7 +53,7 @@ def test(thresh=0.05, show_plots=False, debug=False):
     import bct
     from nilearn import plotting
     
-    ts = np.loadtxt('data/sub-001_ses-1_Schaefer200x7_196v_ts.csv', delimiter=',')
+    ts = np.loadtxt('data/ts/sub-001_ses-1_Schaefer200x7_196v_ts.csv', delimiter=',')
     if debug:
         print(' + ts.shape:', ts.shape, ts[0][:5])
     
