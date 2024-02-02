@@ -6,7 +6,7 @@ addpath('tools/system-segregation-and-graph-tools/MATLAB');
 thresh=0.05;
 
 %% load timeseries
-ts = load('data/ts/sub-001_ses-1_Schaefer200x7_196v_ts.csv');
+ts = load('data/test_ts/sub-001_ses-1_Schaefer200x7_196v_ts.csv');
 
 %% correlation matrix
 cc_r = corr(ts);
