@@ -5,7 +5,7 @@ clear
 %% Setup
 %% -----------------------------------------------------------------------------------------------
 
-%% main working directory
+%% set the main working directory path
 %PROJECT_DIR = '/Users/jhash1/Dropbox/Documents/Amystartup/Teaching/hackathon_CS';
 PROJECT_DIR = '/Users/carl/work/NeuroDataHackathon_2023/ds003592/hackathon_final';
 
@@ -58,7 +58,7 @@ for  i=1:nSubj; % loop over subject
     
     disp(strcat('Subject #',num2str(i)));
     
-    %run loop for each sparisty threshold. Networks are created by taking a
+    %run loop for each sparsity threshold. Networks are created by taking a
     %certain proportion of nodes, e.g. 0.05= top 5%, 0.1= top 10%
     %this keeps the number of connections constant in each subjects so
     %that any differences observed are due to topology of network and not sue to a difference in total number of connections
