@@ -4,33 +4,6 @@
 Grapth Theory - Systems Segregation
 
 
-├── README.md
-├── data
-│   ├── Schaefer2018_200Parcels_7Networks_order_FSLMNI152_1mm_Centroid_RAS.csv
-│   ├── Schaefer2018_200Parcels_7Networks_order_FSLMNI152_1mm_Centroid_RAS.xlsx
-│   ├── clean_healthy_ts/
-│   │   ├── sub-001_ses-1_Schaefer200x7_196v_ts.csv
-│   │   ├── sub-001_ses-2_Schaefer200x7_196v_ts.csv
-│   │   ├── sub-002_ses-1_Schaefer200x7_196v_ts.csv
-│   │   ├── sub-002_ses-2_Schaefer200x7_196v_ts.csv
-│   │   ├── sub-003_ses-1_Schaefer200x7_196v_ts.csv
-│   │   ├── sub-003_ses-2_Schaefer200x7_196v_ts.csv
-...
-│   │   ├── sub-300_ses-1_Schaefer200x7_196v_ts.csv
-│   │   └── sub-300_ses-2_Schaefer200x7_196v_ts.csv
-│   ├── network_members.csv
-│   ├── participants_with_data_296.csv
-│   └── test_ts/
-│       └── sub-001_ses-1_Schaefer200x7_196v_ts.csv
-├── run_seg_test.py
-├── seg_test_matlab.m
-├── segmentation.py
-├── systems_seg_example.m
-└── tools
-    ├── BCT_v20190303/
-    └── system-segregation-and-graph-tools/
-
-
 ### data
 
 The data folder contains both metadata and timeseries data:
