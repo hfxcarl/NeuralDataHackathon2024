@@ -13,6 +13,9 @@ The data folder contains both metadata and timeseries data:
  - Schaefer2018_200Parcels_7Networks_order_FSLMNI152_1mm_Centroid_RAS.csv file contains the 200-node atlas information including x,y,z centroid coordinates and network_membership of each node. 
  - network_members.csv (aka: "M.txt") file contains the vector (1x200) labelling the network membership for each of the 200 nodes.
  - participants_with_data_296.csv file contains information about each participant, including age, agegroup, yrs_education, cognitive-behaviour test scores, etc.
+ - participants_Spreng.xlsx file contains participant phenotypic behavioural & cognitive values
+ - Spreng_info_datadbehav_README_updated_20230530.docx contains descriptions of the behavioural & cognitive variables
+
 
 ### tools
 
