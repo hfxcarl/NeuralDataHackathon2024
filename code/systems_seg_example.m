@@ -23,7 +23,7 @@ addpath(fullfile(PROJECT_DIR, 'tools', 'system-segregation-and-graph-tools'));
 
 %% load subject list
 %subj_table = textread(fullfile(PROJECT_DIR, 'participants_with_data_296.csv'), '%s');
-subj_table = readtable(fullfile(PROJECT_DIR, 'participants_with_data_296.csv'));
+subj_table = readtable(fullfile(PROJECT_DIR, 'data', 'participants_with_data_296.csv'));
 subj_list = subj_table.participant_id;
 subj_list(1:5)
 nSubj = length(subj_list)
@@ -43,7 +43,7 @@ nThresh = length(thresh)
 
 % M = load(fullfile(PROJECT_DIR, 'schaefer200x7_node-to-network.txt'));
 
-AtlasTable = readtable(fullfile(PROJECT_DIR, 'Schaefer2018_200Parcels_7Networks_order_FSLMNI152_1mm_Centroid_RAS.csv'));
+AtlasTable = readtable(fullfile(PROJECT_DIR, 'data', 'Schaefer2018_200Parcels_7Networks_order_FSLMNI152_1mm_Centroid_RAS.csv'));
 M = AtlasTable.network_member;
 disp(' + network_members 10:15:')
 M(10:15)

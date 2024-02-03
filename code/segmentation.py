@@ -53,7 +53,7 @@ def test(thresh=0.05, show_plots=False, debug=False):
     import bct
     from nilearn import plotting
     
-    ts = np.loadtxt('data/test_ts/sub-001_ses-1_Schaefer200x7_196v_ts.csv', delimiter=',')
+    ts = np.loadtxt('../data/test_ts/sub-001_ses-1_Schaefer200x7_196v_ts.csv', delimiter=',')
     if debug:
         print(' + ts.shape:', ts.shape, ts[0][:5])
     
@@ -80,7 +80,7 @@ def test(thresh=0.05, show_plots=False, debug=False):
         plotting.show()
     
     ## load network assigments for each node
-    Ci = np.loadtxt('data/network_members.csv')
+    Ci = np.loadtxt('../data/network_members.csv')
     if debug:
         print(' + Ci.shape:',Ci.shape, type(Ci))
     

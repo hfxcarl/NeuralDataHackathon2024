@@ -1,12 +1,13 @@
 %% matlab code for testing segmentation.matlab on singe 196x400 timeseries
 
-addpath('tools/BCT_v20190303');
-addpath('tools/system-segregation-and-graph-tools/MATLAB');
+addpath('../tools/BCT_v20190303');
+addpath('../tools/system-segregation-and-graph-tools/MATLAB');
 
 thresh=0.05;
 
-%% load timeseries
-ts = load('data/test_ts/sub-001_ses-1_Schaefer200x7_196v_ts.csv');
+%% load timeseries & 200-node network membership info
+ts = load('../data/test_ts/sub-001_ses-1_Schaefer200x7_196v_ts.csv');
+M = load('../data/network_members.csv');
 
 %% correlation matrix
 cc_r = corr(ts);
@@ -28,8 +29,7 @@ h = heatmap(cc_thr,'MissingDataColor','w');
 %% print first few timepoints of cc_thr
 cc_thr(1,1:5)
 
-%% load node-2-network mappping, and calculate network-segregation
-M = load('data/network_members.csv');
+%% calculate network-segregation
 [S_wei, W_wei, B_wei] = segregation(cc_thr, M);
 
 disp(['S_wei=', num2str(S_wei)])
