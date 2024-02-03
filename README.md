@@ -27,7 +27,7 @@ The tools folder contains Matlab libraries for BCT and systems-segregation, down
 ### code
 
 #### Python:
-  - segregation.py file contains the systems-segregation code that duplicates functionality of original Matlab code (see above). There are two functions: segregate() and test().
+  - segregation.py file contains the segregation() code duplicating the functionality of original Matlab code (see above). There are two functions: segregate() and test().
 
 #### Matlab:
   - seg_test_matlab.m file contains a very simple example of loading a timeseries and calculating correlation coefficients, zscoring and thresholding these, then running the system-segregation function. 

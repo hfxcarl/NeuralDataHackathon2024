@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-## test examples:
-##   python -c "from segmentation import test; test()"
-##   python -c "from segmentation import test; test(thresh=.05, show_plots=True, debug=True)"
+## test Usage:
+##   python -c "from segregation import test; test()"
+##   python -c "from segregation import test; test(thresh=0.05, debug=True)"
 
 import numpy as np
 
@@ -48,20 +48,50 @@ def segregation(M, Ci, *varargin):
     return S, W, B
 
 
-def test(thresh=0.05, show_plots=False, debug=False):
+def test(**kwargs):
+    '''
+    Test for the segregation function. 
+     - Loads example timeseries.csv & network_members.csv files.
+     - Calculate correlation coefficients (cc_r) (default thresh=0.05)
+     - Zscore correlation coefficients (cc_z)
+     - Fill main diagonal with 0's
+     - Apply a proportional threshold (cc_thr)
+     - Calculate network segregation (S,W,B)
+
+    Parameters:
+     - varargin: (Optional)
+         + thresh (float: 0>t<100): thresholds connectivity matrix by preserving a
+            proportion p (0<p<1) of the strongest weights. All other weights, and all 
+            weights on main diagonal (self-self connections) are set to 0. (default=0.05) 
+         + debug (bool): controls debuging & plotting of correlation matrix before 
+            and after zscrore,thesholding. (default=False)
+    '''
+    if len(kwargs) > 2:
+        raise ValueError('Too many optional inputs')
+    thresh,debug = 0.05,False ## set defaults
+    for k,v in kwargs.items():
+        if k == 'debug' and type(v)==type(True):
+            debug = v
+        elif k == 'thresh' and v>0 and v<100:
+            thresh = v
     
     import bct
     from nilearn import plotting
     
+    ## load example timeseries data
     ts = np.loadtxt('../data/test_ts/sub-001_ses-1_Schaefer200x7_196v_ts.csv', delimiter=',')
+        
+    ## load network assigments for each of 200-nodes
+    Ci = np.loadtxt('../data/network_members.csv')
+
     if debug:
         print(' + ts.shape:', ts.shape, ts[0][:5])
+        print(' + Ci.shape:',Ci.shape, type(Ci))
     
     ## compute correlation coefficients
     cc_r = np.corrcoef(ts, rowvar=False)
     if debug:
         print(' + cc_r.shape:', cc_r.shape, type(cc_r), cc_r[0][:5])
-    if show_plots:
         plotting.plot_matrix(cc_r, title='correlation matrix', colorbar=True, vmax=0.8, vmin=-0.8)
         plotting.show()
     
@@ -72,21 +102,15 @@ def test(thresh=0.05, show_plots=False, debug=False):
     np.fill_diagonal(cc_z, 0)
     
     ## apply proportional threshold
-    cm = bct.threshold_proportional(cc_z, thresh)
+    cc_thr = bct.threshold_proportional(cc_z, thresh)
     if debug:
-        print(' + cm.shape:', cm.shape, type(cm), cm[0][:5])
-    if show_plots:
-        plotting.plot_matrix(cm, title='correlation matrix - zscored & thresh-prop(%.2f)'%(thresh), colorbar=True, vmax=0.8, vmin=-0.8)
+        print(' + cc_thr.shape:', cc_thr.shape, type(cc_thr), cc_thr[0][:5])
+        plotting.plot_matrix(cc_thr, title='correlations - zscored & thresh-prop(%.2f)'%(thresh), colorbar=True, vmax=0.8, vmin=-0.8)
         plotting.show()
     
-    ## load network assigments for each node
-    Ci = np.loadtxt('../data/network_members.csv')
-    if debug:
-        print(' + Ci.shape:',Ci.shape, type(Ci))
-    
-    ## calculate segragation:
-    S,W,B = segregation(cm, Ci)
+    ## calculate & report segragation:
+    S,W,B = segregation(cc_thr, Ci)
     print(' ++ S:',S)
     print(' ++ W:',W)
     print(' ++ B:',B)
-    return
+    return (S,W,B)
