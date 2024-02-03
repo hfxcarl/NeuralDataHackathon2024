@@ -4,6 +4,7 @@
 Grapth Theory - Systems Segregation
 
 
+
 ### data
 
 The data folder contains both metadata and timeseries data:
@@ -14,7 +15,11 @@ The data folder contains both metadata and timeseries data:
 - network_members.csv (aka: "M.txt") file contains the vector (1x200) labelling the network membership for each of the 200 nodes.
 - participants_with_data_296.csv file contains information about each participant, including age, agegroup, yrs_education, cognitive-behaviour test scores, etc.
 
+### tools
 
+The tools folder contains Matlab libraries for BCT and systems-segregation, downloaded and installed from their respective sources.
+- [BCT](https://sites.google.com/site/bctnet/)
+- [systems-segregation-and-graph-tools]( https://github.com/mychan24/system-segregation-and-graph-tools) 
 
 Python:
 
