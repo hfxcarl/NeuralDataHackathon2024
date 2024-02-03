@@ -17,9 +17,12 @@ The data folder contains both metadata and timeseries data:
 
 #### tools
 
-The tools folder contains Matlab libraries for BCT and systems-segregation, downloaded and installed from their respective sources.
+The tools folder contains Matlab libraries for BCT and systems-segregation, downloaded and installed from their respective sources. Including licenses, etc.
 - [BCT](https://sites.google.com/site/bctnet/)
 - [systems-segregation-and-graph-tools]( https://github.com/mychan24/system-segregation-and-graph-tools) 
+
+
+#### code
 
 Python:
 
