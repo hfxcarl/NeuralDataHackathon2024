@@ -13,7 +13,7 @@ cc_r = corr(ts);
 cc_r(1,1:5)
 
 %% plot correlation matrix
-%h = heatmap(cc_r,'MissingDataColor','w');
+h = heatmap(cc_r,'MissingDataColor','w');
 
 %% convert to zscore
 cc_z = 0.5.*[log(1.+cc_r)-log(1.-cc_r)];
@@ -23,9 +23,9 @@ cc_z = triu(cc_z,1) + tril(cc_z,-1);
 
 %% apply threshold -
 cc_thr = threshold_proportional(cc_z, thresh);
-%%h = heatmap(cc_thr,'MissingDataColor','w');
+h = heatmap(cc_thr,'MissingDataColor','w');
 
-%% print
+%% print first few timepoints of cc_thr
 cc_thr(1,1:5)
 
 %% load node-2-network mappping, and calculate network-segregation

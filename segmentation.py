@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+## test examples:
+##   python -c "from segmentation import test; test()"
+##   python -c "from segmentation import test; test(thresh=.05, show_plots=True, debug=True)"
+
 import numpy as np
 
 def segregation(M, Ci, *varargin):
@@ -34,12 +38,8 @@ def segregation(M, Ci, *varargin):
     for i in range(len(nCi)):  # loop through unique communities
         Wi = Ci == nCi[i]  # find index for within community edges
         Bi = Ci != nCi[i]  # find index for between community edges
-        #print(' * Wi:',Wi.shape, Wi)
-        #print(' * Bi:',Bi.shape, Bi)
         Wv_temp = M[Wi, :][:, Wi]  # extract within community edges
         Bv_temp = M[Wi, :][:, Bi]  # extract between community edges
-        #print(' * Wv_temp:', Wv_temp.shape)
-        ## matlab:  Wv = [Wv, Wv_temp(logical(triu(ones(sum(Wi)),1)))'];
         Wv.extend(Wv_temp[np.triu(np.ones_like(Wv_temp),k=1) == 1].flatten())
         Bv.extend(Bv_temp.flatten())
     W = np.mean(Wv)  # mean within community edges
@@ -61,23 +61,22 @@ def test(thresh=0.05, show_plots=False, debug=False):
     cc_r = np.corrcoef(ts, rowvar=False)
     if debug:
         print(' + cc_r.shape:', cc_r.shape, type(cc_r), cc_r[0][:5])
+    if show_plots:
+        plotting.plot_matrix(cc_r, title='correlation matrix', colorbar=True, vmax=0.8, vmin=-0.8)
+        plotting.show()
     
     ## z-score correlations
     cc_z = 0.5 * (np.log(1.+cc_r)-np.log(1.-cc_r))
     
     ## fill main diagonal with 0's
     np.fill_diagonal(cc_z, 0)
-
-    if show_plots:
-        plotting.plot_matrix(cc_z, colorbar=True, vmax=0.8, vmin=-0.8)
-        plotting.show()
     
     ## apply proportional threshold
     cm = bct.threshold_proportional(cc_z, thresh)
     if debug:
         print(' + cm.shape:', cm.shape, type(cm), cm[0][:5])
     if show_plots:
-        plotting.plot_matrix(cc_z, colorbar=True, vmax=0.8, vmin=-0.8)
+        plotting.plot_matrix(cm, title='correlation matrix - zscored & thresh-prop(%.2f)'%(thresh), colorbar=True, vmax=0.8, vmin=-0.8)
         plotting.show()
     
     ## load network assigments for each node
